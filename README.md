@@ -1,21 +1,37 @@
-# NEON DODGE 🎮
+# 🌾 PIXEL HARVEST — Farm RPG Multiplayer Prototype
 
-A mobile-friendly HTML5 Canvas arcade game. Dodge pink meteors, collect gold stars, and beat your own high score.
+A browser farming RPG built with HTML, CSS and JavaScript. Runs on GitHub Pages with no build step.
+
+## Features
+- Plant, grow and harvest carrots, corn and strawberries
+- Buy seeds, sell crops, earn gold, XP and character levels
+- Energy regeneration, daily rewards, foraging quests
+- WASD, arrow keys, on-screen controls and tap-to-move
+- Local save using browser localStorage
+- **Optional multiplayer:** live player positions and room chat using Supabase Realtime Presence + Broadcast
 
 ## Play locally
-Open `index.html` in any modern browser. No installation needed.
+Open `index.html` in a browser. Internet is needed to load the Supabase client module from esm.sh; solo farming works without Supabase credentials.
 
-## Publish free on GitHub Pages
-1. Create a **public** repository named `neon-dodge-game` on GitHub.
-2. Upload `index.html` and `README.md` to the repository root and commit.
-3. Open **Settings → Pages**.
-4. Choose **Deploy from a branch**, branch **main**, folder **/(root)**, then Save.
-5. Wait for the deployment and open `https://YOUR_USERNAME.github.io/neon-dodge-game/`.
+## Publish on GitHub Pages
+1. Merge the feature branch to `main`.
+2. In GitHub, open **Settings → Pages**.
+3. Select **Deploy from a branch**, `main`, `/(root)`.
+4. Your expected URL is https://tgodexe.github.io/neon-dodge-game/ once published.
 
-## Controls
-- Desktop: Left/Right arrow keys or A/D.
-- Mobile: Drag your finger on the game canvas.
-- Collect yellow stars (+25 points), dodge pink meteors (3 lives).
-- High score is saved locally on the device.
+## Enable multiplayer
+1. Create a free Supabase project at https://supabase.com.
+2. In the project dashboard, copy **Project URL** and **anon/publishable key**. **Never enter the service_role/secret key** in the browser.
+3. Ensure Supabase Realtime is enabled for public channels. This prototype uses ephemeral **Presence** and **Broadcast**; it does not require database tables.
+4. All players enter the **same Supabase project URL, public key and room name**, with their own character names, and click **Connect room**.
+5. Open the game URL on separate devices to see each other's avatars and chat messages.
 
-Note: This version does not include an online multiplayer server or a global leaderboard. Friends can each play via the same link on their own devices.
+## Important limitations
+- Multiplayer shares **player presence, movement and chat only**. Crops, inventory, gold, XP and quest progress are **local per device**, not shared or authoritative.
+- There is no authentication, moderation, anti-cheat, persistent multiplayer world, PvP or server-backed economy.
+- Public Realtime rooms are suitable for a demo among friends; don't share private information in chat.
+- Supabase's public project key is intended for browser use; secret/service_role keys are not.
+- This is a new game replacing the old NEON DODGE interface. The GitHub repository name stays `neon-dodge-game`.
+
+## Next steps
+For true persistent shared-world RPG gameplay, add authenticated player accounts, server-side game logic, Postgres persistence, authoritative inventory/economy and rate-limited chat.
